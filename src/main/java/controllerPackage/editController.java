@@ -1,6 +1,8 @@
 package controllerPackage;
 
 import CommandLine.DictionaryManagement;
+import CommandLine.Word;
+import dictionaryAction.ProcessXMLDatabase;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class editController implements Initializable {
     DictionaryManagement dictionaryManagement  = new DictionaryManagement();
+    ProcessXMLDatabase processXMLDatabase = new ProcessXMLDatabase();
     @FXML
     private Button backButton;
 
@@ -61,20 +64,24 @@ public class editController implements Initializable {
                 }
                 else
                 {
-                    if (dictionaryManagement.getNewD().getExplain(targetField.getText()) == true)
+                    if (processXMLDatabase.getListWord().containsKey(targetField.getText()))
                     {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Confirmation");
                         alert.setHeaderText("Are you sure to edit this word ?");
                         ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                        ButtonType buttonTypeApply = new ButtonType("Yes", ButtonBar.ButtonData.APPLY);
+                        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
                         ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
-                        alert.getButtonTypes().setAll(buttonTypeApply, buttonTypeCancel, buttonTypeNo);
+                        alert.getButtonTypes().setAll( buttonTypeCancel, buttonTypeYes, buttonTypeNo);
                         Optional<ButtonType> result = alert.showAndWait();
-                        if (result.get() == buttonTypeApply)
+                        if (result.get() == buttonTypeYes)
                         {
                             dictionaryManagement.getNewD().edit(targetField.getText(), explainField.getText());
                             dictionaryManagement.dictionaryExportToFile();
+                            Word newWord = new Word();
+                            newWord.setWord_target(targetField.getText());
+                            newWord.setWord_explain(explainField.getText());
+                            processXMLDatabase.editElement(newWord);
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                             alert1.setTitle("Notification");
                             alert1.setHeaderText("Word edited to the Dictionary");

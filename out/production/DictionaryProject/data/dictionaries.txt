@@ -516,6 +516,7 @@ deputy	Phó
 warmth	ấm áp
 destroy	hủy hoại
 hostage	con tin
+fffff	hihi
 priority	sự ưu tiên
 creative	sáng tạo
 coast	bờ biển
@@ -861,6 +862,7 @@ forward	phía trước
 Roman	Roman
 bless	ban phước
 ethical	đạo đức
+linhhh	aloaaaaa
 comparable	so sánh
 self-esteem	lòng tự trọng
 opera	opera
@@ -915,6 +917,7 @@ disapproving	phản đối
 nonsense	lời nói vô lý, vô nghĩa
 breath	hơi thở
 ball	trái bóng
+meo	meoaa
 repeat	nói lại
 smoking	sự hút thuốc
 seem linking	chọn lựa, chọn lọc
@@ -1906,6 +1909,7 @@ consideration	xem xét
 simultaneously	đồng thời
 brother	em trai
 hurt	đau
+bb	d
 be	được
 prove	chứng minh
 admire	ngưỡng mộ
@@ -2504,6 +2508,7 @@ everybody	mọi người
 shrimp	con tôm
 purpose	mục đích
 regret	hối tiếc
+linh	aa
 line	hàng
 penalty	hình phạt
 link	liên kết
@@ -4989,6 +4994,7 @@ apology	xin lỗi
 argument	tranh luận
 passage	đoạn văn
 adequate	đầy đủ
+linhpham	linhcutene
 dozen	tá
 tremendous	to lớn
 growing	phát triển
@@ -5069,4 +5075,3 @@ independently	độc lập
 category	thể loại
 informal	không chính thức
 rival	đối thủ
-meo	meoaa	hihiaaa	test thuiaa	testaa	testaa	testaa	testaa	testaa	testaa	testaa	testaa	test

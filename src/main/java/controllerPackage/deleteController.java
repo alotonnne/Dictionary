@@ -2,6 +2,7 @@ package controllerPackage;
 
 import CommandLine.DictionaryManagement;
 import CommandLine.Word;
+import dictionaryAction.ProcessXMLDatabase;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class deleteController implements Initializable {
     private DictionaryManagement dictionaryManagement = new DictionaryManagement();
+    ProcessXMLDatabase processXMLDatabase = new ProcessXMLDatabase();
     @FXML
     private TextField targetField;
 
@@ -60,20 +62,21 @@ public class deleteController implements Initializable {
                 }
                 else
                 {
-                    if (dictionaryManagement.getNewD().getExplain(target) == true)
+                    if (processXMLDatabase.getListWord().containsKey(target))
                     {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Confirmation");
                         alert.setHeaderText("Are you sure to detete this word ?");
                         ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                        ButtonType buttonTypeApply = new ButtonType("Yes", ButtonBar.ButtonData.APPLY);
+                        ButtonType buttonTypeApply = new ButtonType("Yes", ButtonBar.ButtonData.YES);
                         ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
-                        alert.getButtonTypes().setAll(buttonTypeApply, buttonTypeCancel, buttonTypeNo);
+                        alert.getButtonTypes().setAll(buttonTypeCancel, buttonTypeApply, buttonTypeNo);
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == buttonTypeApply)
                         {
                             dictionaryManagement.getNewD().delete(target);
                             dictionaryManagement.dictionaryExportToFile();
+                            processXMLDatabase.deleteElement(target);
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                             alert1.setTitle("Notification");
                             alert1.setHeaderText("Word deleted to the Dictionary");

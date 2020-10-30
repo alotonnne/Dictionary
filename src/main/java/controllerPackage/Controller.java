@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import javazoom.jl.decoder.JavaLayerException;
 
@@ -43,7 +44,7 @@ public class Controller  implements Initializable {
     private TextField textSearchField;
 
     @FXML
-    private ListView<String> listWord;
+    public ListView<String> listWord;
 
     @FXML
     private TextArea explainArea;
@@ -101,10 +102,11 @@ public class Controller  implements Initializable {
             explainTemp.add(item.getValue());
         }
         listWord.getItems().addAll(targetTemp);
+        //
         listWord.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
-                return new MyCell();
+                return new Mycell();
             }
         });
         searchField.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -135,6 +137,18 @@ public class Controller  implements Initializable {
             }
         });
 
+    }
+
+    public static class Mycell extends ListCell<String> {
+        @Override
+        protected void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null) {
+                setText(item);
+            } else {
+                setText(null);
+            }
+        }
     }
 
     /**
@@ -172,6 +186,22 @@ public class Controller  implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/addGui.fxml"));
         Stage stage = new Stage();
         stage.setScene( new Scene(root));
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                listWord.getItems().clear();
+                processXMLDatabase.readFile();
+                wordList = processXMLDatabase.getListWord();
+                targetTemp = processXMLDatabase.getTarget();
+                listWord.getItems().addAll(targetTemp);
+                listWord.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+                    @Override
+                    public ListCell<String> call(ListView<String> param) {
+                        return new Mycell();
+                    }
+                });
+            }
+        });
         stage.show();
     }
 
@@ -180,6 +210,22 @@ public class Controller  implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/deleteGui.fxml"));
         Stage stage = new Stage();
         stage.setScene( new Scene(root));
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                listWord.getItems().clear();
+                processXMLDatabase.readFile();
+                wordList = processXMLDatabase.getListWord();
+                targetTemp = processXMLDatabase.getTarget();
+                listWord.getItems().addAll(targetTemp);
+                listWord.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+                    @Override
+                    public ListCell<String> call(ListView<String> param) {
+                        return new Mycell();
+                    }
+                });
+            }
+        });
         stage.show();
     }
 
@@ -188,6 +234,22 @@ public class Controller  implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/editGui.fxml"));
         Stage stage = new Stage();
         stage.setScene( new Scene(root));
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                listWord.getItems().clear();
+                processXMLDatabase.readFile();
+                wordList = processXMLDatabase.getListWord();
+                targetTemp = processXMLDatabase.getTarget();
+                listWord.getItems().addAll(targetTemp);
+                listWord.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+                    @Override
+                    public ListCell<String> call(ListView<String> param) {
+                        return new Mycell();
+                    }
+                });
+            }
+        });
         stage.show();
     }
 
